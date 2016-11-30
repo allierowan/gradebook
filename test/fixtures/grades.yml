@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hw:
+  value: A
+  assignment_name: Homework
+  student: kvothe
+  due_at: 2016-11-30
+
+essay:
+  value: B
+  assignment_name: Essay
+  student: sim
+  due_at: 2016-11-30

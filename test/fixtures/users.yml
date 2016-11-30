@@ -3,7 +3,11 @@
 elodin:
   password_hash: <%= BCrypt::Password.create("password") %>
   email: "elodin@theuniversity.com"
+  personable: elodin
+  personable_type: Teacher
 
 kilvin:
   password_hash: <%= BCrypt::Password.create("password") %>
   email: "kilvin@theuniversity.com"
+  personable: kilvin
+  personable_type: Teacher
