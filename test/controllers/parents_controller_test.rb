@@ -16,4 +16,11 @@ class ParentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "/"
     assert_equal "You don't have access to this action", flash[:alert]
   end
+
+  test "parent can create login" do
+    post users_path, params: { user: { email: "arlidenthebard@edema.com", password: "password" } }
+    assert_redirected_to student_parent_path(User.last.personable.student.id, User.last.personable_id)
+    assert_equal "Arliden the Bard", User.last.personable.full_name
+    assert_equal "Parent", User.last.personable_type
+  end
 end

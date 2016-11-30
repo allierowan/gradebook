@@ -25,6 +25,10 @@ class UsersController < ApplicationController
   end
 
   def path_redirect(id, personable_type)
-    redirect_to send("#{personable_type.downcase}_path", id)
+    if personable_type == "Parent"
+      redirect_to send("student_#{personable_type.downcase}_path", *[Parent.find(id).student_id, id])
+    else
+      redirect_to send("#{personable_type.downcase}_path", id)
+    end
   end
 end
