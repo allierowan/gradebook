@@ -15,4 +15,11 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "/"
     assert_equal "You don't have access to this action", flash[:alert]
   end
+
+  test "student can create a login" do
+    post users_path, params: { user: { email: "kvothe@theuniversity.com", password: "password" } }
+    assert_redirected_to student_path(User.last.personable_id)
+    assert_equal "Kvothe Kingkiller", User.last.personable.full_name
+    assert_equal "Student", User.last.personable_type
+  end
 end

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       @user = User.find_by(email: params[:email])
       if @user && @user.password == params[:password]
         session["current_user_id"] = @user.id
-        path_redirect(@user.id, @user.personable_type)
+        path_redirect(@user.personable_id, @user.personable_type)
       else
         @message = "You username or password was not correct"
         render :new
