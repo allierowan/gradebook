@@ -22,4 +22,10 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Kvothe Kingkiller", User.last.personable.full_name
     assert_equal "Student", User.last.personable_type
   end
+
+  test "student cannot create a login if their email is not already in the db" do
+    post users_path, params: { user: { email: "willem@theuniversity.com", password: "password" } }
+    assert_equal "You have not been added to the roster yet", flash[:alert]
+  end
+
 end

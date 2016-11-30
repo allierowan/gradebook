@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new()
     @user.personable = find_person if find_person
-    if @user.save
+    if !find_person
+      flash[:alert] = "You have not been added to the roster yet"
+    elsif @user.save
       session["current_user_id"] = @user.id
       path_redirect(@user.personable_id, @user.personable_type)
     else
