@@ -11,3 +11,9 @@ kilvin:
   email: "kilvin@theuniversity.com"
   personable: kilvin
   personable_type: Teacher
+
+fela:
+  password_hash: <%= BCrypt::Password.create("password") %>
+  email: "fela@theuniversity.com"
+  personable: fela
+  personable_type: Student

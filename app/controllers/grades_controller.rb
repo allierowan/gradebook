@@ -1,4 +1,10 @@
 class GradesController < ApplicationController
+  load_and_authorize_resource
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to "/", alert: "You don't have access to this action"
+  end
+
   def new
     @grade = Grade.new()
   end
