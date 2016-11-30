@@ -1,2 +1,7 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<% if current_user.personable_type == "Student" %>
+  <%= render "profile" %>
+<% else %>
+  <h1><%= @student.full_name %>'s Info</h1>
+  <%= link_to "Add Grade", new_student_grade_path(@student.id) %>
+  <%= render "grades/list" %>
+<% end %>

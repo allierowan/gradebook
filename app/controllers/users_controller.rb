@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new()
+    @user = User.new(user_params)
     @user.personable = find_person if find_person
     if !find_person
-      flash[:alert] = "You have not been added to the roster yet"
+      flash[:danger] = "You have not been added to the roster yet"
     elsif @user.save
       session["current_user_id"] = @user.id
       redirect_to @user.personable

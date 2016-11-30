@@ -12,6 +12,6 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
   test "can only create new teacher as a teacher" do
     post teachers_path params: { teacher: { full_name: "Mandrag", email: "mandrag@theuniversity.com" } }
     assert_redirected_to "/"
-    assert_equal "You don't have access to this action", flash[:alert]
+    assert_equal "You don't have access to this action", flash[:danger]
   end
 end

@@ -13,7 +13,7 @@ class ParentsControllerTest < ActionDispatch::IntegrationTest
     kvothe = Student.find(students(:kvothe).id)
     post parents_path(kvothe.id), params: { parent: { full_name: "Arliden", email: "arlidenthebard@edema.com" } }
     assert_redirected_to "/"
-    assert_equal "You don't have access to this action", flash[:alert]
+    assert_equal "You don't have access to this action", flash[:danger]
   end
 
   test "parent can create login" do

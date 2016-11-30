@@ -1,0 +1,26 @@
+<table class="table">
+  <tr>
+    <th>
+      Assignment
+    </th>
+    <th>
+      Grade
+    </th>
+    <th>
+      Due Date
+    </th>
+    <% @student.grades.each do |grade| %>
+    <tr>
+      <td>
+        <%= grade.assignment_name %>
+      </td>
+      <td>
+        <%= grade.value %>
+      </td>
+      <td>
+        <%= grade.due_at %>
+      </td>
+    </tr>
+    <% end %>
+  </tr>
+</table>

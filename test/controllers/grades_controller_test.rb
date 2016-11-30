@@ -41,13 +41,13 @@ class GradesControllerTest < ActionDispatch::IntegrationTest
   test "can't get new grade if not logged in as teacher" do
     get new_student_grade_path(@student.id)
     assert_response :redirect
-    assert_equal "You don't have access to this action", flash[:alert]
+    assert_equal "You don't have access to this action", flash[:danger]
   end
 
   test "can't create grade if not logged in as teacher" do
     post session_path, params: { email: "fela@theuniversity.com", password: "password" }
     post student_grades_path(@student.id), params: { grade: { assignment_name: "an assignment", value: "A+", due_at: Date.new } }
     assert_response :redirect
-    assert_equal "You don't have access to this action", flash[:alert]
+    assert_equal "You don't have access to this action", flash[:danger]
   end
 end

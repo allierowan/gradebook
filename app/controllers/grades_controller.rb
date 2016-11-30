@@ -6,6 +6,7 @@ class GradesController < ApplicationController
   end
 
   def new
+    @student = Student.find(params[:student_id])
     @grade = Grade.new()
   end
 
