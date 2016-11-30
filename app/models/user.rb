@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def password
     @_password ||= BCrypt::Password.new(password_hash)
   end
+
+  def teacher?
+    self.personable_type == "Teacher"
+  end
 end
