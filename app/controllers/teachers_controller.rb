@@ -1,4 +1,9 @@
 class TeachersController < ApplicationController
+  load_and_authorize_resource
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to "/", alert: "You don't have access to this action"
+  end
+
   def new
     @teacher = Teacher.new()
   end
@@ -6,7 +11,7 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
-      redirect_to "/"
+      redirect_to teacher_path(current_user.personable_id)
     else
       render :new
     end

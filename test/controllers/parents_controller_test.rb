@@ -16,5 +16,4 @@ class ParentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "/"
     assert_equal "You don't have access to this action", flash[:alert]
   end
-
 end
