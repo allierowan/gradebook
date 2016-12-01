@@ -29,6 +29,9 @@
           </td>
         </tr>
       <% end %>
-    </ul>
+    </table>
+  </div>
+  <div class="row">
+    <%= link_to "All Students", teacher_path(@student.teacher.id), class:"btn btn-primary" %>
   </div>
 <% end %>
