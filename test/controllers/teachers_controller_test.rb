@@ -9,7 +9,7 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Mandrag", Teacher.last.full_name
   end
 
-  test "can only create new teacher as a teacher" do
+  test "can only create new teacher when logged in as teacher" do
     post teachers_path params: { teacher: { full_name: "Mandrag", email: "mandrag@theuniversity.com" } }
     assert_redirected_to "/"
     assert_equal "You are not authorized to access this page.", flash[:danger]
