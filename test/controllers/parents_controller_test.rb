@@ -1,12 +1,26 @@
 require 'test_helper'
 
 class ParentsControllerTest < ActionDispatch::IntegrationTest
+
+  test "can get new" do
+    post session_path, params: { email: "elodin@theuniversity.com", password: "password" }
+    get new_parent_path(student_id: students(:kvothe).id)
+    assert_response :success
+  end
+
   test "teacher can create parents inside student" do
     kvothe = Student.find(students(:kvothe).id)
     post session_path, params: { email: "elodin@theuniversity.com", password: "password" }
     post parents_path, params: { parent: { full_name: "Arliden", email: "arlidenthebard@edema.com", student_id: kvothe.id } }
     assert_equal "Arliden", Parent.last.full_name
     assert_equal Parent.last, kvothe.parents.last
+  end
+
+  test "renders new if can't create parent" do
+    kvothe = Student.find(students(:kvothe).id)
+    post session_path, params: { email: "elodin@theuniversity.com", password: "password" }
+    post parents_path, params: { parent: { email: "arlidenthebard@edema.com", student_id: kvothe.id } }
+    assert_response :success
   end
 
   test "must be logged in as teacher to create parents" do
