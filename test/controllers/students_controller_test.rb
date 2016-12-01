@@ -12,7 +12,7 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
   test "must be logged in as teacher to create students" do
     post students_path, params: { student: { full_name: "Kvothe Kingkiller", email: "kvothe@theuniversity.com" } }
     assert_redirected_to "/"
-    assert_equal "You don't have access to this action", flash[:danger]
+    assert_equal "You are not authorized to access this page.", flash[:danger]
   end
 
   test "student can create a login" do

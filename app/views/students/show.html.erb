@@ -2,6 +2,33 @@
   <%= render "profile" %>
 <% else %>
   <h1><%= @student.full_name %>'s Info</h1>
-  <%= link_to "Add Grade", new_student_grade_path(@student.id) %>
-  <%= render "grades/list" %>
+  <div class="row">
+    <h4>Grades</h4>
+    <%= link_to "Add Grade", new_student_grade_path(@student.id) %>
+    <%= render partial: "grades/list", locals: {student: @student} %>
+  </div>
+  <div class="row">
+    <h4>Parents</h4>
+    <%= link_to "Add Parent", new_parent_path(student_id: @student.id) %>
+    <table class="table">
+      <tr>
+        <th>
+          Parent Name
+        </th>
+        <th>
+          Parent Email
+        </th>
+      </tr>
+      <% @student.parents.each do |parent| %>
+        <tr>
+          <td>
+            <%= parent.full_name %>
+          </td>
+          <td>
+            <%= parent.email %>
+          </td>
+        </tr>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

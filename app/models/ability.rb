@@ -5,8 +5,10 @@ class Ability
 
     user ||= User.new
     can :manage, :all if user.teacher?
+    cannot :read, Parent if user.teacher?
     can :read, Student if user.personable_type == "Student"
-    can :read, Student if user.personable_type == "Parent"
+    can :read, Parent if user.personable_type == "Parent"
+
 
     # Define abilities for the passed in user here. For example:
     #

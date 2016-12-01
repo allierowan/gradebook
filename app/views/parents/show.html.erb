@@ -1,2 +1,4 @@
-<h1>Parents#show</h1>
-<p>Find me in app/views/parents/show.html.erb</p>
+<h1>Parent Portal</h1>
+<h3><%= current_user.personable.student.full_name %>'s Info </h3>
+<h4>Grades</h4>
+<%= render partial: "grades/list", locals: {student: current_user.personable.student}%>

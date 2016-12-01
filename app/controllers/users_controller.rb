@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user.personable = find_person if find_person
     if !find_person
       flash[:danger] = "You have not been added to the roster yet"
+      redirect_to root_path
     elsif @user.save
       session["current_user_id"] = @user.id
       redirect_to @user.personable

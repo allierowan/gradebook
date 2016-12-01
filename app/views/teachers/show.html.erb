@@ -6,7 +6,15 @@
     <% current_user.personable.students.each do |student| %>
       <li>
         <%= link_to student.full_name, student %>
+
+      <% student.parents.each do |parent| %>
+        <ul>
+          <li>
+            <%= parent.full_name %>
+          </li>
+        </ul>
       </li>
+      <% end %>
     <% end %>
   </ul>
 
